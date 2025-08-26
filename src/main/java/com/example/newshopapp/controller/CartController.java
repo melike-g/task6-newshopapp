@@ -18,13 +18,13 @@ public class CartController {
         this.cartService = cartService;
     }
 
-    // 📌 1) Tüm sepetleri getir
+
     @GetMapping
     public ResponseEntity<List<Cart>> getAllCarts() {
         return ResponseEntity.ok(cartService.getAllCarts());
     }
 
-    // 📌 2) Tek sepet getir (id ile)
+
     @GetMapping("/{cartId}")
     public ResponseEntity<Cart> getCartById(@PathVariable Long cartId) {
         return cartService.getCart(cartId)
@@ -32,7 +32,7 @@ public class CartController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // 📌 3) Sepete ürün ekle
+
     @PostMapping("/{cartId}/addProduct")
     public ResponseEntity<Cart> addProductToCart(
             @PathVariable Long cartId,
@@ -42,7 +42,7 @@ public class CartController {
         return ResponseEntity.ok(updatedCart);
     }
 
-    // 📌 4) Sepeti boşalt
+
     @DeleteMapping("/{cartId}/empty")
     public ResponseEntity<Void> emptyCart(@PathVariable Long cartId) {
         return cartService.getCart(cartId).map(cart -> {
